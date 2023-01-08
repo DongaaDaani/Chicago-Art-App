@@ -4,11 +4,16 @@ import { Card } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
 import ArtDetail from './ArtDetail.tsx'
-import FavoriteAddAlert from '../FavoriteAddAlert.tsx'
+import AlertModal from '../AlertModal.tsx'
 
 
+/*
+-In this component, I created the listed artworks structure
+- Added some methods to the buttons.
+-I send Properties to the ArtDetails componens, to display more information about the selected Artwork
+-There is a favorite list add button in this component.
+*/
 export default function Art({ filteredArts }) {
-
 
     const [addModelShow, setAddModelShow] = useState(false)
     const [favoriteModelShow, setFavoriteModelShow] = useState(false)
@@ -20,20 +25,18 @@ export default function Art({ filteredArts }) {
     const addFavoriteModalClose = () => setFavoriteModelShow(false);
 
 
-
     const addFavorite = (item) => {
         console.log(item)
         let array = favoriteItems
-        if(array){
+        if (array) {
             array.push(item)
             setFavoriteItems(array)
             localStorage.setItem('favItems', JSON.stringify(favoriteItems));
         }
     }
 
-
+    //ArtDetail components get the item object information, and display them.
     return (
-
         <div className='conatiner'>
             <Row >
                 {filteredArts.map((item) =>
@@ -53,7 +56,7 @@ export default function Art({ filteredArts }) {
                 )}
             </Row>
             <ArtDetail item={selectedItem} favoriteList={favoriteItems} provenance={selectedItem.provenance_text ? selectedItem.provenance_text : "Unknow"} credit={selectedItem.credit_line ? selectedItem.credit_line : "Unknow"} history={selectedItem.artist_display} place={selectedItem.place_of_origin ? selectedItem.place_of_origin : "Unknow"} show={addModelShow} title={selectedItem.title} department={selectedItem.department_title ? selectedItem.department_title : "Unknow"} artist={selectedItem.artist_title ? selectedItem.artist_title : "Unknow"} url={`https://www.artic.edu/iiif/2/${selectedItem.image_id}/full/100,/0/default.jpg`} onHide={addModalClose} />
-            <FavoriteAddAlert show={favoriteModelShow} onHide={addFavoriteModalClose} />
+            <AlertModal show={favoriteModelShow} onHide={addFavoriteModalClose} />
         </div>
     )
 }

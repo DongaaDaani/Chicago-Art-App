@@ -4,15 +4,19 @@ import Art from '../Art/ArtList.tsx';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 
-
-export default function SearchArt({ details }) {
+/*
+-A Filter Component, where you get the complete ArtList property and filtered them by the filteredArts methods.
+-You can set the searchField. 
+In this component call the Main Component, where you set the ArtList Propery using Axios.
+*/
+export default function SearchArt({ artList }) {
 
     const [searchField, setSearchField] = useState("");
 
-    const filteredArts = details.filter(
-        person => {
+    const filteredArts = artList.filter(
+        arts => {
             return (
-                person.title.toLowerCase().includes(searchField.toLowerCase())
+                arts.title.toLowerCase().includes(searchField.toLowerCase())
             );
         }
     );

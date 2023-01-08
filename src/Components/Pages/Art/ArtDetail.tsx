@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { Modal, Button, Row, Col, Form } from "react-bootstrap";
 
+/*
+-In this component, I display the actual properties in a popup window. 
+-There is an "add favorites" button defined in the component.
+*/
 export default class ArtDetail extends Component {
     constructor(props) {
         super(props);
     }
 
-     addFavorite=(item)=>{
+    addFavorite = (item) => {
         let array = this.props.favoriteList
         array.push(item)
-        console.log("array",array)
-        if(array){
+        console.log("array", array)
+        if (array) {
             localStorage.setItem('favItems', JSON.stringify(array));
         }
     }
-    
+
     render() {
         return (
             <div className="container">
@@ -26,8 +30,8 @@ export default class ArtDetail extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <Col >  
-                             <img style={{ width: '18rem' }} src={this.props.url} />
+                            <Col >
+                                <img style={{ width: '18rem' }} src={this.props.url} />
                             </Col>
                             <Col>
                                 <h5>{this.props.title} <br /> </h5>
@@ -45,7 +49,7 @@ export default class ArtDetail extends Component {
                         <Button variant="danger" onClick={this.props.onHide}>
                             Vissza
                         </Button>
-                        <Button  onClick={()=> { this.addFavorite(this.props.item);alert("Favorite added! You can see the item in your Favorite List!") }} variant="success">Add Favorite
+                        <Button onClick={() => { this.addFavorite(this.props.item); alert("Favorite added! You can see the item in your Favorite List!") }} variant="success">Add Favorite
                         </Button>
                     </Modal.Footer>
                 </Modal>

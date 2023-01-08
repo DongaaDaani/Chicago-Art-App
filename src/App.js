@@ -1,9 +1,8 @@
 
-import './App.css';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from './Components/Pages/Navigation.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Art from './Components/Pages/Art/ArtList.tsx';
 import FavoriteList from './Components/Pages/Art/FavoriteList.tsx';
 import Main from './Components/Pages/Main.tsx';
 
